@@ -18,8 +18,8 @@ When you link your GitHub, Sonatype will automatically generate a **namespace** 
 * **Namespace**: ``io.github.init-io``  
 * Bonus: It comes with a lovely green "Verified" tag. Fancy, right?
 
-.. image:: https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/namespace.png
-   :target: https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/namespace.png
+.. image:: https://raw.githubusercontent.com/Init-io/MavenCentralPublishingGuide/refs/heads/main/images/namespace.png
+   :target: https://raw.githubusercontent.com/Init-io/MavenCentralPublishingGuide/refs/heads/main/images/namespace.png
    :alt: Sonatype Account Creation Example
 
 *(Imagine a green badge here. You know you want it.)*
@@ -345,14 +345,14 @@ Here's an example template for ``settings.xml``\ :
 Make sure to replace ``your-user-name`` and ``your-password`` with your actual credentials.  
 To generate a password (private key) in Sonatype, log in to your account, go to `View Account <https://central.sonatype.com/account>`_.
 
-.. image:: https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/View%20Account.png
-   :target: https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/View%20Account.png
+.. image:: https://raw.githubusercontent.com/Init-io/MavenCentralPublishingGuide/refs/heads/main/images/View%20Account.png
+   :target: https://raw.githubusercontent.com/Init-io/MavenCentralPublishingGuide/refs/heads/main/images/View%20Account.png
    :alt: View Account Example
 
 and click **Generate User Token**.
 
-.. image:: https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/Generate%20User%20Token.png
-   :target: https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/Generate%20User%20Token.png
+.. image:: https://raw.githubusercontent.com/Init-io/MavenCentralPublishingGuide/refs/heads/main/images/Generate%20User%20Token.png
+   :target: https://raw.githubusercontent.com/Init-io/MavenCentralPublishingGuide/refs/heads/main/images/Generate%20User%20Token.png
    :alt: Generate User Token
 
 *(Generate the key to roll.)*.
@@ -376,8 +376,8 @@ Step 8: Validate and Publish
 #. Log in to your `Sonatype Central <https://central.sonatype.com/>`_ account.
 #. Navigate to `Publish <https://central.sonatype.com/publishing>`_.
 
-   .. image:: https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/Publish.png
-      :target: https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/Publish.png
+   .. image:: https://raw.githubusercontent.com/Init-io/MavenCentralPublishingGuide/refs/heads/main/images/Publish.png
+      :target: https://raw.githubusercontent.com/Init-io/MavenCentralPublishingGuide/refs/heads/main/images/Publish.png
       :alt: Publish
 
 
@@ -391,8 +391,8 @@ Within a few minutes, your library will be published and available on **Maven Ce
 
 * Go to the `Browse <https://central.sonatype.com/search/>`_ section in Sonatype and search for your library.
 
-.. image:: https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/Browse.png
-   :target: https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/Browse.png
+.. image:: https://raw.githubusercontent.com/Init-io/MavenCentralPublishingGuide/refs/heads/main/images/Browse.png
+   :target: https://raw.githubusercontent.com/Init-io/MavenCentralPublishingGuide/refs/heads/main/images/Browse.png
    :alt: Browse
 
 Thank You for Reading!
