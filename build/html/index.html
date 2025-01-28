@@ -1,0 +1,463 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Publish Your Java Library to Maven Central &mdash; MavenCentralGuideDocs  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            MavenCentralGuideDocs
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">How to Publish Your Java Library to Maven Central</a><ul>
+<li><a class="reference internal" href="#step-1-create-an-account-on-central-sonatype">Step 1: Create an Account on Central Sonatype</a></li>
+<li><a class="reference internal" href="#step-2-add-and-configure-your-pom-xml-file">Step 2: Add and Configure Your <code class="docutils literal notranslate"><span class="pre">pom.xml</span></code> File</a><ul>
+<li><a class="reference internal" href="#below-is-the-complete-pom-xml">Below is the complete pom.xml:</a></li>
+<li><a class="reference internal" href="#understanding-versioning-in-maven-central">Understanding Versioning in Maven Central</a></li>
+<li><a class="reference internal" href="#semantic-versioning-major-minor-patch">Semantic Versioning: MAJOR.MINOR.PATCH</a></li>
+<li><a class="reference internal" href="#snapshot-versions">Snapshot Versions</a></li>
+<li><a class="reference internal" href="#versioning-in-your-pom-xml">Versioning in Your <code class="docutils literal notranslate"><span class="pre">pom.xml</span></code></a></li>
+<li><a class="reference internal" href="#best-practices-for-versioning">Best Practices for Versioning</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-3-install-gpg-trust-me-it-s-important">Step 3: Install GPG (Trust Me, It’s Important)</a><ul>
+<li><a class="reference internal" href="#once-installed">Once installed:</a></li>
+<li><a class="reference internal" href="#publish-your-gpg-key">Publish Your GPG Key:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-4-make-your-project-maven-ready">Step 4: Make Your Project Maven-Ready</a></li>
+<li><a class="reference internal" href="#step-5-sign-your-files">Step 5: Sign Your Files</a></li>
+<li><a class="reference internal" href="#step-6-configure-your-maven-settings-xml">Step 6: Configure Your Maven <code class="docutils literal notranslate"><span class="pre">settings.xml</span></code></a></li>
+<li><a class="reference internal" href="#step-7-deploy-your-library">Step 7: Deploy Your Library</a></li>
+<li><a class="reference internal" href="#step-8-validate-and-publish">Step 8: Validate and Publish</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#thank-you-for-reading">Thank You for Reading!</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">MavenCentralGuideDocs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">How to Publish Your Java Library to Maven Central</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="how-to-publish-your-java-library-to-maven-central">
+<h1>How to Publish Your Java Library to Maven Central<a class="headerlink" href="#how-to-publish-your-java-library-to-maven-central" title="Link to this heading"></a></h1>
+<section id="step-1-create-an-account-on-central-sonatype">
+<h2>Step 1: Create an Account on Central Sonatype<a class="headerlink" href="#step-1-create-an-account-on-central-sonatype" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>First things first — go to <a class="reference external" href="https://central.sonatype.com/">central.sonatype.com</a></dt><dd><p>and create an account. You can use your existing <strong>GitHub account</strong> to make the process easy.</p>
+</dd>
+</dl>
+<p>When you link your GitHub, Sonatype will automatically generate a <strong>namespace</strong> for you based on your GitHub username. For example:</p>
+<ul class="simple">
+<li><p><strong>GitHub Username</strong>: <code class="docutils literal notranslate"><span class="pre">init-to</span></code></p></li>
+<li><p><strong>Namespace</strong>: <code class="docutils literal notranslate"><span class="pre">io.github.init-io</span></code></p></li>
+<li><p>Bonus: It comes with a lovely green “Verified” tag. Fancy, right?</p></li>
+</ul>
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/namespace.png"><img alt="Sonatype Account Creation Example" src="https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/namespace.png" />
+</a>
+<p><em>(Imagine a green badge here. You know you want it.)</em></p>
+</section>
+<section id="step-2-add-and-configure-your-pom-xml-file">
+<h2>Step 2: Add and Configure Your <code class="docutils literal notranslate"><span class="pre">pom.xml</span></code> File<a class="headerlink" href="#step-2-add-and-configure-your-pom-xml-file" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">pom.xml</span></code> file is the heart of your Maven project. To publish your library to Maven Central, it needs some extra love and care. Here’s what to include in your <code class="docutils literal notranslate"><span class="pre">pom.xml</span></code>:</p>
+<section id="below-is-the-complete-pom-xml">
+<h3>Below is the complete pom.xml:<a class="headerlink" href="#below-is-the-complete-pom-xml" title="Link to this heading"></a></h3>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;project</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0&quot;</span>
+<span class="w">         </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+<span class="w">         </span><span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>io.github.init-io<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>javase<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;version&gt;</span>1.2.2<span class="nt">&lt;/version&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>Javase<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>A<span class="w"> </span>java<span class="w"> </span>library<span class="w"> </span>to<span class="w"> </span>easily<span class="w"> </span>interact<span class="w"> </span>with<span class="w"> </span>firebase<span class="w"> </span>realtime<span class="w"> </span>database,<span class="w"> </span>authentication<span class="w"> </span>and<span class="w"> </span>storage<span class="nt">&lt;/description&gt;</span>
+<span class="w">    </span><span class="nt">&lt;url&gt;</span>http://github.com/init-io/javase<span class="nt">&lt;/url&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;licenses&gt;</span>
+<span class="w">        </span><span class="nt">&lt;license&gt;</span>
+<span class="w">            </span><span class="nt">&lt;name&gt;</span>MIT<span class="w"> </span>License<span class="nt">&lt;/name&gt;</span>
+<span class="w">            </span><span class="nt">&lt;url&gt;</span>http://www.opensource.org/licenses/mit-license.php<span class="nt">&lt;/url&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/license&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/licenses&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;developers&gt;</span>
+<span class="w">        </span><span class="nt">&lt;developer&gt;</span>
+<span class="w">            </span><span class="nt">&lt;name&gt;</span>Siam<span class="w"> </span>Rayhan<span class="nt">&lt;/name&gt;</span>
+<span class="w">            </span><span class="nt">&lt;email&gt;</span>developers.init.io@gmail.com<span class="nt">&lt;/email&gt;</span>
+<span class="w">            </span><span class="nt">&lt;organization&gt;</span>Init.io<span class="nt">&lt;/organization&gt;</span>
+<span class="w">            </span><span class="nt">&lt;organizationUrl&gt;</span>https://github.com/init-io<span class="nt">&lt;/organizationUrl&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/developer&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/developers&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;dependencies&gt;</span>
+<span class="w">        </span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">            </span><span class="nt">&lt;groupId&gt;</span>org.json<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;artifactId&gt;</span>json<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">            </span><span class="nt">&lt;version&gt;</span>20240303<span class="nt">&lt;/version&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/dependencies&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;scm&gt;</span>
+<span class="w">        </span><span class="nt">&lt;connection&gt;</span>scm:git:git://github.com/init-io/javase.git<span class="nt">&lt;/connection&gt;</span>
+<span class="w">        </span><span class="nt">&lt;developerConnection&gt;</span>scm:git:ssh://github.com:init-io/javase.git<span class="nt">&lt;/developerConnection&gt;</span>
+<span class="w">        </span><span class="nt">&lt;url&gt;</span>http://github.com/init-io/javase/tree/master<span class="nt">&lt;/url&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/scm&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;properties&gt;</span>
+<span class="w">        </span><span class="nt">&lt;maven.compiler.source&gt;</span>17<span class="nt">&lt;/maven.compiler.source&gt;</span>
+<span class="w">        </span><span class="nt">&lt;maven.compiler.target&gt;</span>17<span class="nt">&lt;/maven.compiler.target&gt;</span>
+<span class="w">        </span><span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/properties&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;build&gt;</span>
+<span class="w">        </span><span class="nt">&lt;plugins&gt;</span>
+<span class="w">            </span><span class="nt">&lt;plugin&gt;</span>
+<span class="w">                </span><span class="nt">&lt;groupId&gt;</span>org.sonatype.central<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>central-publishing-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;version&gt;</span>0.5.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">                </span><span class="nt">&lt;extensions&gt;</span>true<span class="nt">&lt;/extensions&gt;</span>
+<span class="w">                </span><span class="nt">&lt;configuration&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;publishingServerId&gt;</span>central<span class="nt">&lt;/publishingServerId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/configuration&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/plugin&gt;</span>
+
+<span class="w">            </span><span class="cm">&lt;!--            javadoc--&gt;</span>
+<span class="w">            </span><span class="nt">&lt;plugin&gt;</span>
+<span class="w">                </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>maven-javadoc-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;version&gt;</span>3.3.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">                </span><span class="nt">&lt;executions&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;execution&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;id&gt;</span>attach-javadocs<span class="nt">&lt;/id&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;goals&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;goal&gt;</span>jar<span class="nt">&lt;/goal&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/goals&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/execution&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/executions&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="w">            </span><span class="cm">&lt;!--            source--&gt;</span>
+<span class="w">            </span><span class="nt">&lt;plugin&gt;</span>
+<span class="w">                </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>maven-source-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;version&gt;</span>3.2.1<span class="nt">&lt;/version&gt;</span>
+<span class="w">                </span><span class="nt">&lt;executions&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;execution&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;id&gt;</span>attach-sources<span class="nt">&lt;/id&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;goals&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;goal&gt;</span>jar-no-fork<span class="nt">&lt;/goal&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/goals&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/execution&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/executions&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="w">            </span><span class="cm">&lt;!--            pom, .asc--&gt;</span>
+<span class="w">            </span><span class="nt">&lt;plugin&gt;</span>
+<span class="w">                </span><span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;artifactId&gt;</span>maven-gpg-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">                </span><span class="nt">&lt;version&gt;</span>1.6<span class="nt">&lt;/version&gt;</span>
+<span class="w">                </span><span class="nt">&lt;executions&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;execution&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;id&gt;</span>sign-artifacts<span class="nt">&lt;/id&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;phase&gt;</span>verify<span class="nt">&lt;/phase&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;goals&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;goal&gt;</span>sign<span class="nt">&lt;/goal&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/goals&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/execution&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/executions&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/plugins&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/build&gt;</span>
+
+<span class="nt">&lt;/project&gt;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Tip</strong>: If your project doesn’t have a <code class="docutils literal notranslate"><span class="pre">pom.xml</span></code> file yet, you can generate one using the Maven quickstart archetype:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mvn<span class="w"> </span>archetype:generate<span class="w"> </span>-DgroupId<span class="o">=</span>io.github.snoop-dog<span class="w"> </span>-DartifactId<span class="o">=</span>mylib<span class="w"> </span>-DarchetypeArtifactId<span class="o">=</span>maven-archetype-quickstart<span class="w"> </span>-DinteractiveMode<span class="o">=</span><span class="nb">false</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="understanding-versioning-in-maven-central">
+<h3>Understanding Versioning in Maven Central<a class="headerlink" href="#understanding-versioning-in-maven-central" title="Link to this heading"></a></h3>
+<p>When you publish a library to <strong>Maven Central</strong>, it’s important to follow <strong>semantic versioning</strong> to ensure that your library remains stable and easily usable by others. Versioning
+helps users and automated systems understand the nature of changes between releases. Let’s break down how versioning works:</p>
+</section>
+<section id="semantic-versioning-major-minor-patch">
+<h3>Semantic Versioning: MAJOR.MINOR.PATCH<a class="headerlink" href="#semantic-versioning-major-minor-patch" title="Link to this heading"></a></h3>
+<p>In Maven, your library’s version number is typically written as <code class="docutils literal notranslate"><span class="pre">MAJOR.MINOR.PATCH</span></code>. Here’s what each part means:</p>
+<ol class="arabic simple">
+<li><p><strong>MAJOR</strong>: Increment this number when you make <strong>backward-incompatible changes</strong>. For example, if you remove or change public APIs, or introduce breaking changes that will affect users of previous versions, increase the MAJOR version.</p>
+<ul class="simple">
+<li><p>Example: <code class="docutils literal notranslate"><span class="pre">1.0.0</span></code> → <code class="docutils literal notranslate"><span class="pre">2.0.0</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>MINOR</strong>: Increment this number when you add <strong>new features in a backward-compatible manner</strong>. This means that new functionality has been added, but old functionality still works as expected.</p>
+<ul class="simple">
+<li><p>Example: <code class="docutils literal notranslate"><span class="pre">1.0.0</span></code> → <code class="docutils literal notranslate"><span class="pre">1.1.0</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>PATCH</strong>: Increment this number when you make <strong>backward-compatible bug fixes</strong>. This means that the library has improved without adding new features, just fixing issues like bugs or performance problems.</p>
+<ul class="simple">
+<li><p>Example: <code class="docutils literal notranslate"><span class="pre">1.0.0</span></code> → <code class="docutils literal notranslate"><span class="pre">1.0.1</span></code></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="snapshot-versions">
+<h3>Snapshot Versions<a class="headerlink" href="#snapshot-versions" title="Link to this heading"></a></h3>
+<p>During development, you may release <strong>snapshot versions</strong>. These versions are used to denote that the code is still under development and not stable. A snapshot version ends with <code class="docutils literal notranslate"><span class="pre">-SNAPSHOT</span></code>, like <code class="docutils literal notranslate"><span class="pre">1.0.0-SNAPSHOT</span></code>. Snapshot versions are typically used for early builds or pre-releases, and they’re automatically updated by Maven.</p>
+<ul class="simple">
+<li><p>Example: <code class="docutils literal notranslate"><span class="pre">1.0.0-SNAPSHOT</span></code> → <code class="docutils literal notranslate"><span class="pre">1.1.0-SNAPSHOT</span></code></p></li>
+</ul>
+<p>Once the code is stable and ready for a release, remove the <code class="docutils literal notranslate"><span class="pre">-SNAPSHOT</span></code> suffix and release it as a final version (e.g., <code class="docutils literal notranslate"><span class="pre">1.0.0</span></code>).</p>
+</section>
+<section id="versioning-in-your-pom-xml">
+<h3>Versioning in Your <code class="docutils literal notranslate"><span class="pre">pom.xml</span></code><a class="headerlink" href="#versioning-in-your-pom-xml" title="Link to this heading"></a></h3>
+<p>Ensure the version number in your <code class="docutils literal notranslate"><span class="pre">pom.xml</span></code> reflects your current release, and remember to update it each time you make a change. Here’s an example snippet of what versioning looks
+like in the <code class="docutils literal notranslate"><span class="pre">pom.xml</span></code> file:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+</pre></div>
+</div>
+<p>When you release a new version of your library, update this field accordingly. If you’re maintaining multiple versions, be sure to keep track of which version corresponds to which release.</p>
+</section>
+<section id="best-practices-for-versioning">
+<h3>Best Practices for Versioning<a class="headerlink" href="#best-practices-for-versioning" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Never overwrite a released version</strong>: Once a version is published to Maven Central, it’s <strong>immutable</strong>. This ensures that developers relying on your library don’t unexpectedly get new features or bug fixes unless they explicitly request them.</p></li>
+<li><p><strong>Use clear version numbers</strong>: Avoid using ambiguous version numbers like <code class="docutils literal notranslate"><span class="pre">1.0.0-beta</span></code> or <code class="docutils literal notranslate"><span class="pre">1.0.1-dev</span></code> in production releases, as these can cause confusion.</p></li>
+<li><p><strong>Update your version regularly</strong>: Even if you’re fixing bugs or making small changes, be sure to update the version to avoid conflicts and confusion with users of previous versions.</p></li>
+</ul>
+<p>By following these versioning practices, you ensure that your library’s users can easily track updates, understand changes, and manage dependencies in their own projects.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="step-3-install-gpg-trust-me-it-s-important">
+<h2>Step 3: Install GPG (Trust Me, It’s Important)<a class="headerlink" href="#step-3-install-gpg-trust-me-it-s-important" title="Link to this heading"></a></h2>
+<p>To sign your artifacts (like a true professional), you need <strong>GPG</strong> installed on your system.
+Download it for Windows from <a class="reference external" href="https://www.gpg4win.org/">GPG Download Page</a>.</p>
+<section id="once-installed">
+<h3>Once installed:<a class="headerlink" href="#once-installed" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Open your terminal or Command Prompt.</p></li>
+<li><p>Navigate to your project directory.</p></li>
+<li><p>Generate a key pair with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpg<span class="w"> </span>--gen-key
+</pre></div>
+</div>
+<p>Follow the on-screen instructions to set up your key. Choose RSA and an adequate key size (e.g., 2048).</p>
+</li>
+<li><p>To confirm your key was created, type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpg<span class="w"> </span>--list-keys
+</pre></div>
+</div>
+<p>You should see your key details listed.</p>
+</li>
+</ol>
+</section>
+<section id="publish-your-gpg-key">
+<h3>Publish Your GPG Key:<a class="headerlink" href="#publish-your-gpg-key" title="Link to this heading"></a></h3>
+<p>To share your GPG key with the world (and Maven Central), publish it to a keyserver. Use this command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpg<span class="w"> </span>--keyserver<span class="w"> </span>keyserver.ubuntu.com<span class="w"> </span>--send-keys<span class="w"> </span>&lt;YOUR_KEY_ID&gt;
+</pre></div>
+</div>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">&lt;YOUR_KEY_ID&gt;</span></code> with the actual ID of your key (you’ll see it when you run <code class="docutils literal notranslate"><span class="pre">gpg</span> <span class="pre">--list-keys</span></code>).</p>
+<blockquote>
+<div><p><strong>Example Output</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pub</span>   <span class="n">rsa2048</span> <span class="mi">2025</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="p">[</span><span class="n">SC</span><span class="p">]</span>
+      <span class="n">ABCD1234EF567890</span>
+<span class="n">uid</span>   <span class="p">[</span><span class="n">ultimate</span><span class="p">]</span> <span class="n">Your</span> <span class="n">Name</span> <span class="o">&lt;</span><span class="n">your</span><span class="o">-</span><span class="n">email</span><span class="nd">@example</span><span class="o">.</span><span class="n">com</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<hr class="docutils" />
+<ol class="arabic">
+<li><p>Backup Your Key
+Since you’re already about to use the key for signing artifacts, make sure to back it up. You can export the private key (for signing future versions) like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpg<span class="w"> </span>--export-secret-keys<span class="w"> </span>--armor<span class="w"> </span>ABCD1234EF567890<span class="w"> </span>&gt;<span class="w"> </span>my-private-key.asc
+</pre></div>
+</div>
+<p>This will save your private key into a file named my-private-key.asc, which you should store securely (in an encrypted backup location or secure storage).</p>
+</li>
+<li><p>Don’t Lose Your Private Key
+Losing the private key means you can’t sign or update your published artifacts. It’s crucial to have a secure backup of this key.</p></li>
+<li><p>Use the Key for Future Versions
+When you publish new versions of your library or any other artifact to Maven Central, you’ll continue using this same GPG key <code class="docutils literal notranslate"><span class="pre">(ABCD1234EF567890)</span></code>. Make sure to sign each new version with this key to maintain consistency.</p></li>
+</ol>
+</section>
+</section>
+<section id="step-4-make-your-project-maven-ready">
+<h2>Step 4: Make Your Project Maven-Ready<a class="headerlink" href="#step-4-make-your-project-maven-ready" title="Link to this heading"></a></h2>
+<p>Before deploying, you need to make sure your project is in ship-shape.<span class="raw-html-m2r"><br></span>
+Run the following command in your project directory to build your library:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mvn<span class="w"> </span>install
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="step-5-sign-your-files">
+<h2>Step 5: Sign Your Files<a class="headerlink" href="#step-5-sign-your-files" title="Link to this heading"></a></h2>
+<p>Now comes the fun part. You’ll need to <strong>sign</strong> your artifacts (JARs, POMs, etc.). Use the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpg<span class="w"> </span>-ab<span class="w"> </span>target/javase-1.2.2.jar
+gpg<span class="w"> </span>-ab<span class="w"> </span>target/javase-1.2.2-javadoc.jar
+gpg<span class="w"> </span>-ab<span class="w"> </span>target/javase-1.2.2-sources.jar
+gpg<span class="w"> </span>-ab<span class="w"> </span>target/javase-1.2.2.pom
+</pre></div>
+</div>
+<p>After each command, enter <code class="docutils literal notranslate"><span class="pre">y</span></code> when prompted. This generates <code class="docutils literal notranslate"><span class="pre">.asc</span></code> signature files alongside your artifacts.</p>
+</section>
+<hr class="docutils" />
+<section id="step-6-configure-your-maven-settings-xml">
+<h2>Step 6: Configure Your Maven <code class="docutils literal notranslate"><span class="pre">settings.xml</span></code><a class="headerlink" href="#step-6-configure-your-maven-settings-xml" title="Link to this heading"></a></h2>
+<p>You’ll need a <code class="docutils literal notranslate"><span class="pre">settings.xml</span></code> file to tell Maven how to authenticate with Sonatype. This file is usually located in your <code class="docutils literal notranslate"><span class="pre">.m2/</span></code> directory:</p>
+<ul class="simple">
+<li><p>On Windows: <code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;YourUser&gt;\.m2\settings.xml</span></code></p></li>
+<li><p>On Mac/Linux: <code class="docutils literal notranslate"><span class="pre">/Users/&lt;YourUser&gt;/.m2/settings.xml</span></code></p></li>
+</ul>
+<p>Here’s an example template for <code class="docutils literal notranslate"><span class="pre">settings.xml</span></code>:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;settings</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;</span>
+<span class="w">          </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+<span class="w">          </span><span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;servers&gt;</span>
+<span class="w">        </span><span class="nt">&lt;server&gt;</span>
+<span class="w">            </span><span class="nt">&lt;id&gt;</span>central<span class="nt">&lt;/id&gt;</span>
+<span class="w">            </span><span class="nt">&lt;username&gt;</span>your-user-name<span class="nt">&lt;/username&gt;</span>
+<span class="w">            </span><span class="nt">&lt;password&gt;</span>your-password<span class="nt">&lt;/password&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/server&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/servers&gt;</span>
+<span class="nt">&lt;/settings&gt;</span>
+</pre></div>
+</div>
+<p>Make sure to replace <code class="docutils literal notranslate"><span class="pre">your-user-name</span></code> and <code class="docutils literal notranslate"><span class="pre">your-password</span></code> with your actual credentials.
+To generate a password (private key) in Sonatype, log in to your account, go to <a class="reference external" href="https://central.sonatype.com/account">View Account</a>.</p>
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/View%20Account.png"><img alt="View Account Example" src="https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/View%20Account.png" />
+</a>
+<p>and click <strong>Generate User Token</strong>.</p>
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/Generate%20User%20Token.png"><img alt="Generate User Token" src="https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/Generate%20User%20Token.png" />
+</a>
+<p><em>(Generate the key to roll.)</em>.</p>
+</section>
+<section id="step-7-deploy-your-library">
+<h2>Step 7: Deploy Your Library<a class="headerlink" href="#step-7-deploy-your-library" title="Link to this heading"></a></h2>
+<p>Now it’s time for the final move. Run the following command to deploy your library to the <strong>Sonatype Nexus Repository</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mvn<span class="w"> </span>deploy
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="step-8-validate-and-publish">
+<h2>Step 8: Validate and Publish<a class="headerlink" href="#step-8-validate-and-publish" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Log in to your <a class="reference external" href="https://central.sonatype.com/">Sonatype Central</a> account.</p></li>
+<li><p>Navigate to <a class="reference external" href="https://central.sonatype.com/publishing">Publish</a>.</p>
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/Publish.png"><img alt="Publish" src="https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/Publish.png" />
+</a>
+</li>
+<li><p>Validate your deployment:</p>
+<ul class="simple">
+<li><p>It will take some time to be published.</p></li>
+<li><p>After few minitues you will see it says Published.</p></li>
+</ul>
+</li>
+</ol>
+<p>Within a few minutes, your library will be published and available on <strong>Maven Central</strong>. To confirm:</p>
+<ul class="simple">
+<li><p>Go to the <a class="reference external" href="https://central.sonatype.com/search/">Browse</a> section in Sonatype and search for your library.</p></li>
+</ul>
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/Browse.png"><img alt="Browse" src="https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/Browse.png" />
+</a>
+</section>
+</section>
+<section id="thank-you-for-reading">
+<h1>Thank You for Reading!<a class="headerlink" href="#thank-you-for-reading" title="Link to this heading"></a></h1>
+<p>We appreciate you taking the time to go through this guide on publishing your Java library to Maven Central. Whether you’re new to the process or looking for a refresher, we hope this guide helped you navigate the steps to success.</p>
+<p>This guide was created by the <strong>Init.io</strong> team, with special contributions from <strong>Siam Rayhan</strong>. We are passionate about making open-source development more accessible, and we hope you found the information useful.</p>
+<p>If you have any questions, suggestions, or feedback, feel free to reach out to us on <a class="reference external" href="https://github.com/init-io">GitHub</a> or via email at <a class="reference external" href="https://mail.google.com/mail/u/0/#inbox?compose=new">developers.init.io&#64;gmail.com</a>.</p>
+<p>Thank you again for reading, and best of luck with your Maven Central journey!</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, <a href="https://www.facebook.com/thesiamrayhan/" style="text-decoration: none;">Siam Rayhan.</a> </p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
