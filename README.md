@@ -14,7 +14,8 @@ When you link your GitHub, Sonatype will automatically generate a
 -   **Namespace**: `io.github.init-io`
 -   Bonus: It comes with a lovely green \"Verified\" tag. Fancy, right?
 
-[![Sonatype Account Creation Example](https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/namespace.png)](https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/namespace.png)
+[![Sonatype Account Creation Example](https://raw.githubusercontent.com/Init-io/MavenCentralPublishingGuide
+/refs/heads/main/images/namespace.png)](https://raw.githubusercontent.com/Init-io/MavenCentralGuide/refs/heads/main/images/namespace.png)
 
 *(Imagine a green badge here. You know you want it.)*
 
